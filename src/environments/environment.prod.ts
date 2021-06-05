@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  ip_url: "https://ipapi.co/",
+  rate_url: "https://api.vatcomply.com/",
 };

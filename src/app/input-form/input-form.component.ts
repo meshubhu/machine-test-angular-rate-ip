@@ -14,6 +14,8 @@ export class InputFormComponent implements OnInit {
   profileForm: FormGroup;
   minDate = new Date(1999, 0, 4);
   isLoading = false;
+  isError = false
+  errMsg = ''
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,20 +30,17 @@ export class InputFormComponent implements OnInit {
       date: ['',[Validators.required]]
     });
   }
-
-  getPip() {
-    this.dataService.getPresentIp().subscribe(
-      (data)=>this.profileForm.controls['ip'].patchValue(data.ip),
-      (err)=>console.log(err)
-    )
+  back() {
+    this.isLoading = false
+    this.isError = false
+    this.errMsg = ''
+    this.profileForm.reset()
   }
 
   submit(){
     this.isLoading = true
-    // console.log(this.profileForm.value.date);
     this.dataService.getIP(this.profileForm.value.ip).subscribe(
       (data:any)=>{
-        // console.log(data,'>>>>>>>>>>>>>>')
         this.storeService.setDetails({...data})
         this.dataService.getRate(
           new Date(this.profileForm.value.date).toISOString().split('T')[0],
@@ -49,19 +48,23 @@ export class InputFormComponent implements OnInit {
         ).subscribe(
             (data)=>{
               this.isLoading = false
-              // console.log(data,'>>>>>>>>>>>>>>')
               this.storeService.setDetails({...data})
               this.router.navigateByUrl('/data')
-              // console.log(this.storeService.getDetails());
             },
             (err)=>{
               console.log(err)
               this.isLoading = false
+              this.isError = true
               this.router.navigateByUrl('/data')
             }
           )
       },
-      (err)=>console.log(err)
+      (err)=>{
+        this.isLoading = false
+        this.isError = true
+        this.errMsg = err.message 
+        console.log(err.message)
+      }
     )
   }
 }

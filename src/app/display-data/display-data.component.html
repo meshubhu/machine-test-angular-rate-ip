@@ -1,48 +1,54 @@
-<div *ngIf="details" class="boxes">
+<div *ngIf="details">
+  <div class="boxes">
     <div class="box_card p-2">
-        <span class="icn">
-            <mat-icon aria-hidden="false" aria-label="Example my location icon">my_location</mat-icon>
-        </span>
-        <span class="txt ms-2">
-            {{details.ip}}
-        </span>
-    </div>
-    
-    <div class="box_card p-2">
-        <span class="icn">
-            <!-- <mat-icon aria-hidden="false" aria-label="Example flag icon">flag</mat-icon>  -->
-            <!-- <img [src]="https://www.countryflags.io/country_code/flat/24.png"> -->
-
-            <img src='{{ "https://www.countryflags.io/" + details.country_code + "/flat/24.png" }}'>
-        </span>
-        <span class="txt ms-2">
-            {{details.country_name}}
-        </span>
+      <span class="icn">
+        <mat-icon aria-hidden="false" aria-label="Example my location icon"
+          >my_location</mat-icon
+        >
+      </span>
+      <span class="txt ms-2">
+        {{ details.ip }}
+      </span>
     </div>
     <div class="box_card p-2">
-        <span class="icn">
-            <mat-icon aria-hidden="false" aria-label="Example currency icon">account_balance</mat-icon> 
-        </span>
-        <span class="txt ms-2">
-            
-            {{details.currency}}
-        </span>
+      <span class="icn">
+        <img
+          src="{{
+            'https://www.countryflags.io/' +
+              details.country_code +
+              '/flat/24.png'
+          }}"
+        />
+      </span>
+      <span class="txt ms-2">
+        {{ details.country_name }}
+      </span>
     </div>
     <div class="box_card p-2">
-        <span class="icn">
-            <mat-icon aria-hidden="false" aria-label="Example evnet icon">event</mat-icon>
-        </span>
-        <span class="txt ms-2">
-             {{details.date}}
-        </span>
+      <span class="icn">
+        <mat-icon aria-hidden="false" aria-label="Example currency icon"
+          >account_balance</mat-icon
+        >
+      </span>
+      <span class="txt ms-2">
+        {{ details.currency }}
+      </span>
     </div>
-    
     <div class="box_card p-2">
-        <span class="icn">
-            <mat-icon aria-hidden="false" aria-label="Example rate icon">trending_up</mat-icon>
-        </span>
-        <span class="txt ms-2">
-             {{details.rates[details.currency]}}
-        </span>
+      <span class="icn">
+        <mat-icon aria-hidden="false" aria-label="Example evnet icon"
+          >event</mat-icon
+        >
+      </span>
+      <span class="txt ms-2">
+        {{ details.date }}
+      </span>
     </div>
+    <div class="list_curr row">
+      <div class="curr col-3" *ngFor="let item of details.rates | keyvalue">
+        {{ details.rates[details.currency] }} {{ details.currency }} =
+        {{ item.value | currency: item.key :'symbol':'0.2-2' }}
+      </div>
+    </div>
+  </div>
 </div>

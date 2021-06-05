@@ -15,10 +15,8 @@ export class DisplayDataComponent implements OnInit {
   ngOnInit(): void {
     if(this.storeService.getDetails() != undefined) {
       this.details = this.storeService.getDetails()
-      console.log(this.details,this.details.rates[this.details.currency],".>>>>>>>>>>>>>>>>");
       return
     }
-    console.log(this.details,".>>>>>>>>>>>>>>>>");
     this.router.navigateByUrl('/')
   }
 

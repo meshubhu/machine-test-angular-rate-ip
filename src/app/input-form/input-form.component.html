@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <div *ngIf="!isLoading">
+    <div *ngIf="!isLoading && !isError">
     <h5 class="mb-1">Search Exchange rate of your currency with IP address</h5>
 
       <form class="example-form" [formGroup]="profileForm" *ngIf="!isLoading">
@@ -27,11 +27,7 @@
           </mat-form-field>
         </div>
       </div>
-      <button type="button" (click)="getPip()" mat-raised-button color="primary">
-        My current IP
-        
-      </button>
-        <button type="button" [disabled]="!profileForm.valid" (click)="submit()" mat-raised-button color="primary" class="ms-3">Submit</button>
+        <button type="button" [disabled]="!profileForm.valid" (click)="submit()" mat-raised-button color="primary">Submit</button>
       </form>
 
       </div>
@@ -39,5 +35,11 @@
         <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         <h5 class="mt-3">Please wait, we are searching for you</h5>
       </div>
+
+      <div *ngIf="isError" class="text-center">
+        <h6 class="mb-3">{{errMsg}}</h6>
+        <button type="button" (click)="back()" mat-raised-button color="accent">Back</button>
+      </div>
+
     </div>
   </div>

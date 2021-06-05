@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   ip_url: "https://ipapi.co/",
   rate_url: "https://api.vatcomply.com/",
-  present_ip_url: "https://api.ipify.org/"
 };
 
 /*
