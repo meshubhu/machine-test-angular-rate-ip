@@ -1,0 +1,23 @@
+.boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .box_card {
+        display: flex;
+        border-radius: 5px;
+        background-color: #ebedf7;
+        flex: 0 0 23.5%;
+        margin-bottom: 1.5%;
+        
+    .txt {font-weight: 600;    word-break: break-word;}
+    
+    
+    .icn {
+        display: flex;
+        .mat-icon {
+            color: #3f51b5;
+        }   
+    }
+    }
+    
+}
