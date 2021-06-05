@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "machine-test-angular-bodhami": {
+      "hosting": {
+        "ip-rates": [
+          "machine-test-angular-bodhami"
+        ]
+      }
+    }
+  }
+}

@@ -37,25 +37,37 @@ export class InputFormComponent implements OnInit {
     this.profileForm.reset()
   }
 
-  submit(){
+  search(){
     this.isLoading = true
     this.dataService.getIP(this.profileForm.value.ip).subscribe(
       (data:any)=>{
+        this.isLoading = false
+        if (data.error) {
+          this.isError = true
+          this.errMsg = data.reason
+          return
+        }
+        this.isError = false
         this.storeService.setDetails({...data})
+        this.isLoading = true
         this.dataService.getRate(
           new Date(this.profileForm.value.date).toISOString().split('T')[0],
           data.currency
         ).subscribe(
             (data)=>{
               this.isLoading = false
+              this.isError = false
               this.storeService.setDetails({...data})
               this.router.navigateByUrl('/data')
             },
             (err)=>{
-              console.log(err)
+              console.log(err,'>>>>>>>>>>>')
               this.isLoading = false
               this.isError = true
-              this.router.navigateByUrl('/data')
+              this.errMsg = err.error[0].msg
+              if (err.error[0].type=="value_error") {
+                this.errMsg = 'Base currency is not'
+              }
             }
           )
       },

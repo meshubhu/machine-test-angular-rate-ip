@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-12">
     <div *ngIf="!isLoading && !isError">
-    <h5 class="mb-1">Search Exchange rate of your currency with IP address</h5>
+    <h5 class="mb-3">Search Exchange rate of your currency with IP address</h5>
 
       <form class="example-form" [formGroup]="profileForm" *ngIf="!isLoading">
         <div class="row">
         <div class="col-md-6">
-          <mat-form-field class="example-full-width w-100">
+          <mat-form-field class="example-full-width w-100 pb-0">
             <mat-label>Enter Your IP Address</mat-label>
             <input
               mask="IP"
@@ -16,6 +16,16 @@
               [dropSpecialCharacters]="false"
               [validation]="true">
           </mat-form-field>
+          <div *ngIf="profileForm.controls['ip'].invalid && (profileForm.controls['ip'].dirty || profileForm.controls['ip'].touched)" class="mb-3">
+            <span class="text-danger small d-flex align-items-center" *ngIf="profileForm.controls['ip'].errors.required">
+              <mat-icon aria-hidden="false" class="text-danger" aria-label="Example my location icon">error</mat-icon>
+              <span class="d-inline-block ms-2">IP address is required</span>
+            </span>
+            <span class="text-danger small d-flex align-items-center" *ngIf="profileForm.controls['ip'].errors.pattern">
+              <mat-icon aria-hidden="false" class="text-danger" aria-label="Example my location icon">error</mat-icon>
+              <span class="d-inline-block ms-2">IP address is invalid</span>
+            </span>
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -25,9 +35,16 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>
+          
+          <div *ngIf="profileForm.controls['date'].invalid && (profileForm.controls['date'].dirty || profileForm.controls['date'].touched)" class="mb-3">
+            <span class="text-danger small d-flex align-items-center" *ngIf="profileForm.controls['date'].errors.required">
+              <mat-icon aria-hidden="false" class="text-danger" aria-label="Example my location icon">error</mat-icon>
+              <span class="d-inline-block ms-2">Date is required</span>
+            </span>
+          </div>
         </div>
       </div>
-        <button type="button" [disabled]="!profileForm.valid" (click)="submit()" mat-raised-button color="primary">Submit</button>
+        <button type="button" [disabled]="!profileForm.valid || isLoading" (click)="search()" mat-raised-button color="primary">Search</button>
       </form>
 
       </div>

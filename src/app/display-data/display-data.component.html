@@ -1,6 +1,9 @@
 <div *ngIf="details">
+
+  <h5 class="mb-3 text-center">Exchange rates with different currencies</h5>
+
   <div class="boxes">
-    <div class="box_card p-2">
+    <div class="box_card p-2" [matTooltipPosition]="'below'" matTooltip="IP address">
       <span class="icn">
         <mat-icon aria-hidden="false" aria-label="Example my location icon"
           >my_location</mat-icon
@@ -10,7 +13,7 @@
         {{ details.ip }}
       </span>
     </div>
-    <div class="box_card p-2">
+    <div class="box_card p-2"  [matTooltipPosition]="'below'" matTooltip="Country Name">
       <span class="icn">
         <img
           src="{{
@@ -20,11 +23,11 @@
           }}"
         />
       </span>
-      <span class="txt ms-2">
+      <span class="txt ms-2" >
         {{ details.country_name }}
       </span>
     </div>
-    <div class="box_card p-2">
+    <div class="box_card p-2" [matTooltipPosition]="'below'" matTooltip="Currency Code">
       <span class="icn">
         <mat-icon aria-hidden="false" aria-label="Example currency icon"
           >account_balance</mat-icon
@@ -34,7 +37,7 @@
         {{ details.currency }}
       </span>
     </div>
-    <div class="box_card p-2">
+    <div class="box_card p-2" [matTooltipPosition]="'below'" matTooltip="Selected Date">
       <span class="icn">
         <mat-icon aria-hidden="false" aria-label="Example evnet icon"
           >event</mat-icon

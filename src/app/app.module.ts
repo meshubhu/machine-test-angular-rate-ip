@@ -14,6 +14,7 @@ import { DisplayDataComponent } from './display-data/display-data.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
@@ -34,7 +35,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(),
     HttpClientModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -44,7 +46,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
   ],
 })
 export class AppModule { }
